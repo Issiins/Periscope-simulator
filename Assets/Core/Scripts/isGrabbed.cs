@@ -1,24 +1,17 @@
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
 
-public class isGrabbed : MonoBehaviour
+namespace Core.Scripts
 {
-    [SerializeField] private XRGrabInteractable leftHandle; 
-    [SerializeField] private XRGrabInteractable rightHandle;
-    private void Update()
+    public class IsGrabbed : MonoBehaviour
     {
-        bool bothGrabbed = leftHandle.isSelected && rightHandle.isSelected;
-        
-        if (bothGrabbed)
+        [SerializeField] private XRGrabInteractable leftHandle; 
+        [SerializeField] private XRGrabInteractable rightHandle;
+        private bool _bothGrabbed;
+        public bool BothGrabbed => _bothGrabbed;
+        private void Update()
         {
-            Debug.Log("Both handles grabbed - Periscope operational");
-        }
-        else
-        {
-            if (leftHandle.isSelected || rightHandle.isSelected)
-            {
-                Debug.Log("Waiting for second hand...");
-            }
+            _bothGrabbed = leftHandle.isSelected && rightHandle.isSelected;
         }
     }
 }
