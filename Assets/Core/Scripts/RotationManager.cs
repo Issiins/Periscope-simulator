@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace Core.Scripts
@@ -16,9 +17,13 @@ namespace Core.Scripts
                 _direction = new Vector3(transform.position.x - midPoint.x, 
                     0f, 
                     transform.position.z - midPoint.z).normalized;
-                _lookRotation = Quaternion.LookRotation(_direction);
-                transform.rotation = _lookRotation;
+                Rotate();
             }
+        }
+        private void Rotate()
+        {
+            _lookRotation = Quaternion.LookRotation(_direction);
+            transform.rotation = _lookRotation;
         }
     }
 }
