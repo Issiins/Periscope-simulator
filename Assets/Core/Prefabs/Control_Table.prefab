@@ -383,6 +383,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -6505494680676671688, guid: db314e84818579241ae5835d890bc852, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4352711521262981125}
+    - targetCorrespondingSourceObject: {fileID: -6505494680676671688, guid: db314e84818579241ae5835d890bc852, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 595310183294573378}
     - targetCorrespondingSourceObject: {fileID: -5022277616747259553, guid: db314e84818579241ae5835d890bc852, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2115619316314884071}
@@ -449,7 +452,7 @@ Rigidbody:
   m_ImplicitTensor: 1
   m_UseGravity: 0
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 2
   m_Constraints: 0
   m_CollisionDetection: 0
 --- !u!114 &8778232844462578180
@@ -1098,13 +1101,13 @@ HingeJoint:
   m_ConnectedBody: {fileID: 0}
   m_ConnectedArticulationBody: {fileID: 0}
   m_Anchor: {x: 0, y: 0, z: -0.06}
-  m_Axis: {x: 0, y: 1, z: 0}
+  m_Axis: {x: 0, y: -1, z: 0}
   m_AutoConfigureConnectedAnchor: 1
   m_ConnectedAnchor: {x: 0, y: 0, z: 0}
-  m_UseSpring: 1
+  m_UseSpring: 0
   m_Spring:
     spring: 0
-    damper: 2
+    damper: 0
     targetPosition: 0
   m_UseMotor: 0
   m_Motor:
@@ -1116,7 +1119,7 @@ HingeJoint:
   m_UseAcceleration: 0
   m_Limits:
     min: -60
-    max: 65
+    max: 60
     bounciness: 0
     bounceMinVelocity: 0.2
     contactDistance: 0
@@ -1126,3 +1129,16 @@ HingeJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!114 &595310183294573378
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8588352094542027883}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ca6a11b39a54ff4ba8160bbd019c2bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Core.Scripts.Control_Table.RotationChecker
+  loopUpdateRate: 0.5
