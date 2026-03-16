@@ -31,11 +31,11 @@ namespace Core.Scripts.Control_Table
         /// </summary>
         private void EvaluateRotationQuotient()
         {
-            var currentQuentient = _joint.angle;
+            var currentQuotient = _joint.angle;
             var range = Mathf.Abs(_joint.limits.min - _joint.limits.max);
-            currentQuentient = 2f*((currentQuentient - _joint.limits.min)/range);
-            currentQuentient -= 1f;
-            _rotationQuotient = Mathf.Clamp(currentQuentient, -1f, 1f);
+            currentQuotient = 2f*((currentQuotient - _joint.limits.min)/range);
+            currentQuotient -= 1f;
+            _rotationQuotient = Mathf.Clamp(currentQuotient, -1f, 1f);
         }
     }
 }
