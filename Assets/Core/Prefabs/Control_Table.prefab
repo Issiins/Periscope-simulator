@@ -314,7 +314,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -7913152904059825024, guid: db314e84818579241ae5835d890bc852, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.519
+      value: 0.149
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: db314e84818579241ae5835d890bc852, type: 3}
       propertyPath: m_Name
@@ -634,7 +634,7 @@ HingeJoint:
   m_UseAcceleration: 0
   m_Limits:
     min: 0
-    max: 90
+    max: 120
     bounciness: 0
     bounceMinVelocity: 0
     contactDistance: 0
@@ -851,7 +851,7 @@ ConfigurableJoint:
     spring: 0
     damper: 0
   m_LinearLimit:
-    limit: 0.45
+    limit: 0.1815
     bounciness: 0
     contactDistance: 0
   m_AngularXLimitSpring:
@@ -881,7 +881,7 @@ ConfigurableJoint:
   m_XDrive:
     serializedVersion: 4
     positionSpring: 0
-    positionDamper: 0
+    positionDamper: 2
     maximumForce: 3.4028233e+38
     useAcceleration: 0
   m_YDrive:
