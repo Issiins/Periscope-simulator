@@ -7,7 +7,6 @@ namespace Core.Scripts.Periscope_Tranformation
 {
     public class VerticalMovement : MonoBehaviour
     {
-        private Camera _camera;
         [SerializeField] private RotationChecker rotationChecker;
         [SerializeField] private float maxHeightDelta = 15f;
         [SerializeField, Tooltip("Maximum speed of periscope movement – m/s")] private float maxMoveSpeed = 0.6f;
@@ -21,7 +20,6 @@ namespace Core.Scripts.Periscope_Tranformation
 
         private void Start()
         {
-            _camera = GetComponent<Camera>();
             _minHeight = transform.localPosition.y;
             _maxHeight = _minHeight + maxHeightDelta;
             _currentHeight = _minHeight;
