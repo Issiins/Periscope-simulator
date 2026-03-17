@@ -7,18 +7,18 @@ using UnityEngine.Rendering.Universal;
 
 namespace Core.Scripts.Periscope_Tranformation
 {
-    public class CameraDoF : MonoBehaviour
+    public class CameraDoF : BaseParameter
     {
-        [SerializeField] private PositionChecker positionChecker;
-        [SerializeField] private float maxFocusLenght = 300f;
+         [SerializeField] private PositionChecker positionChecker;
+         [SerializeField] private float maxFocusLenght = 300f;
+         [SerializeField] private Volume volume;
          private float _coefficient;
-         private Volume _volume;
          private DepthOfField _depthOfField;
         
-         private void Start()
+         protected override void Start()
          {
-             _volume = GetComponentInChildren<Volume>();
-             _volume.profile.TryGet(out _depthOfField);
+             base.Start();
+             volume.profile.TryGet(out _depthOfField);
              _coefficient = positionChecker.DistanceCoeff;
              StartCoroutine(CoeffientUpdate());
          }
@@ -35,6 +35,13 @@ namespace Core.Scripts.Periscope_Tranformation
                  yield return new WaitForSeconds(0.5f);
              }
          }
-       
+
+         public override string GetValue()
+         {
+             stringBuilder.Append(Math.Round(_depthOfField.focalLength.value, 2));
+             var returnString = stringBuilder.ToString();
+             stringBuilder.Clear();
+             return returnString;
+         }
     }
 }
