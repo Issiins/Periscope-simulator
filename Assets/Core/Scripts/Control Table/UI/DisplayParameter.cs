@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections;
 using Core.Scripts.Periscope_Tranformation;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Core.Scripts.Control_Table.UI
@@ -11,9 +13,13 @@ namespace Core.Scripts.Control_Table.UI
         private TextMeshProUGUI _textMeshProUGUI;
         private string _textToPrint;
 
-        void Start()
-        { 
+        private void Awake()
+        {
             _textMeshProUGUI = GetComponent<TextMeshProUGUI>();
+        }
+        private IEnumerator Start()
+        {
+            yield return null;
             _textToPrint = displayParameter.GetValue();
         }
 
