@@ -1603,6 +1603,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 434720303175787089, guid: 94ce58440d8c3ed4082089aa9c41c77a, type: 3}
   m_PrefabInstance: {fileID: 5680915558697821343}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1631173640 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4622897548109642890, guid: acca8f6e387f016468a04608cf7f5afb, type: 3}
+  m_PrefabInstance: {fileID: 4995115158645348562}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74f00fbaaa9f47199efc3834ef059472, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Core.Scripts.Control_Table.PositionChecker
 --- !u!1 &1827121610
 GameObject:
   m_ObjectHideFlags: 0
@@ -1853,6 +1864,7 @@ GameObject:
   - component: {fileID: 1928285896}
   - component: {fileID: 1928285898}
   - component: {fileID: 1928285899}
+  - component: {fileID: 1928285900}
   m_Layer: 0
   m_Name: Camera
   m_TagString: Untagged
@@ -2001,6 +2013,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Core.Scripts.Periscope_Tranformation.CameraZoom
   rotationChecker: {fileID: 1875835927}
   maxZoomFactor: 3
+--- !u!114 &1928285900
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1928285894}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85314225743548f98e2b648c7375d71e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Core.Scripts.Periscope_Tranformation.CameraDoF
+  positionChecker: {fileID: 1631173640}
+  maxFocusLenght: 300
 --- !u!1 &1981403997
 GameObject:
   m_ObjectHideFlags: 0
@@ -2281,6 +2307,10 @@ PrefabInstance:
     - target: {fileID: 2824766182350087900, guid: acca8f6e387f016468a04608cf7f5afb, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4622897548109642890, guid: acca8f6e387f016468a04608cf7f5afb, type: 3}
+      propertyPath: loopUpdateRate
+      value: 0.1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
