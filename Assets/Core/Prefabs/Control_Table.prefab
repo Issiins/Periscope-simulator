@@ -371,6 +371,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -1032257428618494076, guid: db314e84818579241ae5835d890bc852, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2898937799478346882}
+    - targetCorrespondingSourceObject: {fileID: -1032257428618494076, guid: db314e84818579241ae5835d890bc852, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8369986751927090701}
     - targetCorrespondingSourceObject: {fileID: -4258469665424494878, guid: db314e84818579241ae5835d890bc852, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7508204255651231661}
@@ -395,6 +398,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -5022277616747259553, guid: db314e84818579241ae5835d890bc852, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3781520680338917018}
+    - targetCorrespondingSourceObject: {fileID: -5022277616747259553, guid: db314e84818579241ae5835d890bc852, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4622897548109642890}
   m_SourcePrefab: {fileID: 100100000, guid: db314e84818579241ae5835d890bc852, type: 3}
 --- !u!1 &1620948226882579889 stripped
 GameObject:
@@ -644,6 +650,19 @@ HingeJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!114 &8369986751927090701
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2536807393838611671}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ca6a11b39a54ff4ba8160bbd019c2bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Core.Scripts.Control_Table.RotationChecker
+  loopUpdateRate: 0.5
 --- !u!4 &2590831077588374525 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8173004830601154734, guid: db314e84818579241ae5835d890bc852, type: 3}
@@ -928,6 +947,19 @@ ConfigurableJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!114 &4622897548109642890
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7554061227511011852}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74f00fbaaa9f47199efc3834ef059472, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Core.Scripts.Control_Table.PositionChecker
+  loopUpdateRate: 0.5
 --- !u!1 &8588352094542027883 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -6505494680676671688, guid: db314e84818579241ae5835d890bc852, type: 3}
