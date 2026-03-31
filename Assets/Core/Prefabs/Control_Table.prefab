@@ -1548,43 +1548,43 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: db314e84818579241ae5835d890bc852, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -0.00011428632
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: db314e84818579241ae5835d890bc852, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.0000023245811
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: db314e84818579241ae5835d890bc852, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -0.0010833805
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: db314e84818579241ae5835d890bc852, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.99999964
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: db314e84818579241ae5835d890bc852, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: 0.00080373563
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: db314e84818579241ae5835d890bc852, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: 0.00024897576
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: db314e84818579241ae5835d890bc852, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0.00008532223
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: db314e84818579241ae5835d890bc852, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
+      value: 0.092
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: db314e84818579241ae5835d890bc852, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: 0.029
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: db314e84818579241ae5835d890bc852, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
+      value: -0.01
       objectReference: {fileID: 0}
     - target: {fileID: -7913152904059825024, guid: db314e84818579241ae5835d890bc852, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1937,6 +1937,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Core.Scripts.Control_Table.RotationChecker
   loopUpdateRate: 0.5
+  rotationOnOwnAxis: 0
 --- !u!4 &2590831077588374525 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8173004830601154734, guid: db314e84818579241ae5835d890bc852, type: 3}
@@ -2448,3 +2449,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Core.Scripts.Control_Table.RotationChecker
   loopUpdateRate: 0.5
+  rotationOnOwnAxis: 0

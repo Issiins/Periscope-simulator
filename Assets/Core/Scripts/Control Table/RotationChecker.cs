@@ -18,11 +18,10 @@ namespace Core.Scripts.Control_Table
         private bool _initialized;
 
         public float RotationQuotient => _rotationQuotient;
-
-        private void Start()
+        private void Awake()
         {
             _joint = GetComponent<HingeJoint>();
-            StartCoroutine(UpdateLoop());
+StartCoroutine(UpdateLoop());
         }
 
         private IEnumerator UpdateLoop()
@@ -55,6 +54,11 @@ namespace Core.Scripts.Control_Table
         private void EvaluateRotationQuotient()
         {
             var currentQuotient = _joint.angle;
+            if (IsValidAngle(currentQuotient))
+            {
+                currentQuotient = 0f; 
+            }
+            Debug.Log($"in object '{gameObject.name}' currentQuotient value is: "+currentQuotient);
             var range = Mathf.Abs(_joint.limits.min - _joint.limits.max);
             currentQuotient = 2f * ((currentQuotient - _joint.limits.min) / range);
             currentQuotient -= 1f;
@@ -98,7 +102,12 @@ namespace Core.Scripts.Control_Table
         }
         private bool IsValidQuaternion(Quaternion q)
         {
-            return !float.IsNaN(q.x) && !float.IsNaN(q.y) && !float.IsNaN(q.z) && !float.IsNaN(q.w);
+            return !IsValidAngle(q.x) && !IsValidAngle(q.y) && !IsValidAngle(q.z) && !IsValidAngle(q.w);
+        }
+
+        private bool IsValidAngle(float angle)
+        {
+            return float.IsNaN(angle) || float.IsInfinity(angle);
         }
     }
 }
