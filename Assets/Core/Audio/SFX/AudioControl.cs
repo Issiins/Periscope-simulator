@@ -17,7 +17,7 @@ public class AudioControl : MonoBehaviour
     
     void Update()
     {
-        var currentValue = Mathf.Abs(rotationChecker.RotationQuotient);
+        var currentValue = Mathf.Clamp(Mathf.Abs(rotationChecker.RotationQuotient), 0f,0.9f);
         switch (_isPlaying)
         {
             case true:
