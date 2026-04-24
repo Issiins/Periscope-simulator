@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Text;
-using Core.Scripts.Control_Table;
+using Core.Scripts.Control_Table.Control;
 using UnityEngine;
 
 namespace Core.Scripts.Periscope_Tranformation
@@ -11,13 +11,13 @@ namespace Core.Scripts.Periscope_Tranformation
         [SerializeField] private RotationChecker rotationChecker;
         [SerializeField] private float maxHeightDelta = 15f;
         [SerializeField, Tooltip("Maximum speed of periscope movement – m/s")] private float maxMoveSpeed = 0.6f;
-        [SerializeField] private float midOffset = 0.1f;
+        [SerializeField] [Tooltip("Percentage of value isn't triggered from the middle")] private float midOffset = 0.1f;
         private Camera _cam;
         private float _currentSpeed;
         private float _maxHeight;
         private float _minHeight;
-        private float _targetHeight;
-        private float _speedAmplifier;
+        private float _targetHeight; // height to reach. Possible value minHeight and maxHeight
+        private float _speedAmplifier; // amplifier based on rotation of the lever
         private float _currentHeight;
 
         protected override void Start()
@@ -42,7 +42,10 @@ namespace Core.Scripts.Periscope_Tranformation
             _currentHeight = Mathf.MoveTowards(_currentHeight, _targetHeight, _currentSpeed * Time.deltaTime);
             _cam.transform.localPosition = new Vector3(_cam.transform.localPosition.x, _currentHeight, _cam.transform.localPosition.z); 
         }
-
+        /// <summary>
+        /// Gets value from rotation checker to check how much lever is rotated.
+        /// Updates the value based on rotation
+        /// </summary>
         private IEnumerator SpeedUpdate()
         {
             while (true)
@@ -51,14 +54,13 @@ namespace Core.Scripts.Periscope_Tranformation
                 yield return new WaitForSeconds(0.5f);
             }
         }
-
         public override string GetValue()
         {
             float value = (float) Math.Round(_cam.transform.localPosition.y - _minHeight,2);
-            stringBuilder.Append(value);
-            stringBuilder.Append(" m");
-            string returnValue = stringBuilder.ToString();
-            stringBuilder.Clear();
+            StringBuilder.Append(value);
+            StringBuilder.Append(" m");
+            string returnValue = StringBuilder.ToString();
+            StringBuilder.Clear();
             return returnValue;
         }
     }

@@ -2,6 +2,9 @@
 using UnityEngine;
 namespace Core.Scripts
 {
+    /// <summary>
+    /// Serialize hands transforms
+    /// </summary>
     [Serializable]
     public class HandTransform
     {

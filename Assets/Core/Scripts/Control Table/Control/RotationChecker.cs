@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit.Interactors;
 
-namespace Core.Scripts.Control_Table
+namespace Core.Scripts.Control_Table.Control
 {
     [RequireComponent(typeof(HingeJoint))]
     public class RotationChecker : MonoBehaviour
@@ -16,14 +16,12 @@ namespace Core.Scripts.Control_Table
         private float _accumulatedDelta;
         private Quaternion _startObjectRotation;
         private bool _initialized;
-
         public float RotationQuotient => _rotationQuotient;
         private void Awake()
         {
             _joint = GetComponent<HingeJoint>();
-StartCoroutine(UpdateLoop());
+            StartCoroutine(UpdateLoop());
         }
-
         private IEnumerator UpdateLoop()
         {
             while (true)
@@ -58,30 +56,30 @@ StartCoroutine(UpdateLoop());
             {
                 currentQuotient = 0f; 
             }
-            Debug.Log($"in object '{gameObject.name}' currentQuotient value is: "+currentQuotient);
             var range = Mathf.Abs(_joint.limits.min - _joint.limits.max);
             currentQuotient = 2f * ((currentQuotient - _joint.limits.min) / range);
             currentQuotient -= 1f;
             _rotationQuotient = Mathf.Clamp(currentQuotient, -1f, 1f);
         }
-
+        /// <summary>
+        /// Follow hand rotation from the object
+        /// </summary>
+        /// <param name="switchAxis">switch's own axis</param>
         private void FollowHandRotation(Vector3 switchAxis)
         {
             if (_hand is null) return;
             if (switchAxis == Vector3.zero) return; // guard against NaN
-
             float handX = _hand.transform.localEulerAngles.x;
             float deltaX = Mathf.DeltaAngle(_lastHandX, handX); // finds delta between staring point and current point rotations 
-            _lastHandX = handX;
+            _lastHandX = handX; // saves hand rotation in X axis
 
-            _accumulatedDelta += deltaX;
+            _accumulatedDelta += deltaX; // add x rotation from init saved pos
             _accumulatedDelta = Mathf.Clamp(_accumulatedDelta, _joint.limits.min, _joint.limits.max);
 
             var targetRotation = _startObjectRotation * Quaternion.AngleAxis(_accumulatedDelta, switchAxis);
             if (IsValidQuaternion(targetRotation)) // guard before assigning
                 transform.localRotation = targetRotation;
         }
-
         private void OnTriggerEnter(Collider other)
         {
             var interactor = other.GetComponent<XRDirectInteractor>();
@@ -90,21 +88,17 @@ StartCoroutine(UpdateLoop());
             _initialized = false;
             
         }
-
         private void OnTriggerExit(Collider other)
         {
             var interactor = other.GetComponent<XRDirectInteractor>();
-            if (interactor is not null && interactor == _hand)
-            {
-                _hand = null;
-                _initialized = false;
-            }
+            if (interactor is null || interactor != _hand) return;
+            _hand = null;
+            _initialized = false;
         }
         private bool IsValidQuaternion(Quaternion q)
         {
             return !IsValidAngle(q.x) && !IsValidAngle(q.y) && !IsValidAngle(q.z) && !IsValidAngle(q.w);
         }
-
         private bool IsValidAngle(float angle)
         {
             return float.IsNaN(angle) || float.IsInfinity(angle);

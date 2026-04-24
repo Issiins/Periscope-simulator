@@ -3,8 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Core.Scripts.Control_Table
+namespace Core.Scripts.Control_Table.Control
 {
+    /// <summary>
+    /// Checks position of the joint and normalize the values
+    /// </summary>
     public class PositionChecker : MonoBehaviour
     {
         [Tooltip("In seconds")][SerializeField] private float loopUpdateRate = 0.5f;
@@ -32,7 +35,7 @@ namespace Core.Scripts.Control_Table
         {
             var currentDistance = GetJointDistance();
             float normalizedDistance = currentDistance / _range;
-            _distanceCoeff = Mathf.Clamp(normalizedDistance, -1f, 1f);
+            _distanceCoeff = Mathf.Clamp(normalizedDistance, -1f, 1f); // normalize value
         }
         private float GetJointDistance()
         {

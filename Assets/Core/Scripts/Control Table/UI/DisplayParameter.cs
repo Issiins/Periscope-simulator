@@ -7,6 +7,9 @@ using UnityEngine;
 
 namespace Core.Scripts.Control_Table.UI
 {
+    /// <summary>
+    /// Used for display periscope's camera's parameters in UI
+    /// </summary>
     public class DisplayParameter : MonoBehaviour
     {
         [SerializeField] private BaseParameter displayParameter;
@@ -22,7 +25,6 @@ namespace Core.Scripts.Control_Table.UI
             yield return null;
             _textToPrint = displayParameter.GetValue();
         }
-
         private void FixedUpdate()
         {
             _textToPrint = displayParameter.GetValue();

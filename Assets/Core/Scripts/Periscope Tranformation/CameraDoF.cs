@@ -1,12 +1,16 @@
 ﻿using System;
 using System.Collections;
-using Core.Scripts.Control_Table;
+using Core.Scripts.Control_Table.Control;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 
 namespace Core.Scripts.Periscope_Tranformation
 {
+    /// <summary>
+    /// Class made for depth of field (DoF) parameter.
+    /// Changes value of DoF between range [0; maxFocusLenght].
+    /// </summary>
     public class CameraDoF : BaseParameter
     {
          [SerializeField] private PositionChecker positionChecker;
@@ -22,10 +26,9 @@ namespace Core.Scripts.Periscope_Tranformation
              _coefficient = positionChecker.DistanceCoeff;
              StartCoroutine(CoeffientUpdate());
          }
-
          void Update()
          {
-             _depthOfField.focalLength.value = maxFocusLenght*0.5f*(_coefficient + 1); 
+             _depthOfField.focalLength.value = CalculateValueDoF();
          }
          private IEnumerator CoeffientUpdate()
          {
@@ -35,13 +38,13 @@ namespace Core.Scripts.Periscope_Tranformation
                  yield return new WaitForSeconds(0.5f);
              }
          }
-
          public override string GetValue()
          {
-             stringBuilder.Append(Math.Round(_depthOfField.focalLength.value, 2));
-             var returnString = stringBuilder.ToString();
-             stringBuilder.Clear();
+             StringBuilder.Append(Math.Round(_depthOfField.focalLength.value, 2));
+             var returnString = StringBuilder.ToString();
+             StringBuilder.Clear();
              return returnString;
          }
+         private float CalculateValueDoF() => maxFocusLenght*0.5f*(_coefficient + 1); 
     }
 }
