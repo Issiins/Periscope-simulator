@@ -16,6 +16,8 @@ namespace Core.Scripts
         [SerializeField] private EnvironmentObject[] environmentObjects;
         [SerializeField] private float threshHold = 0.98f;
         [SerializeField] private float requiredTime = 3.0f;
+        [SerializeField] private AudioClip successBell;
+        [Range(0f, 1f)] [SerializeField] private float bellVolume = 0.5f;
         
         [Header("UI")]
         [SerializeField] private Image objectImage;
@@ -46,7 +48,10 @@ namespace Core.Scripts
                 if (lookTimer < requiredTime) return;
                 idx++;         
                 lookTimer = 0f;
-                // TODO: Play Bell SFX
+                if (successBell != null)
+                {
+                    AudioSource.PlayClipAtPoint(successBell, transform.position, bellVolume);
+                }
                 if (idx < environmentObjects.Length)
                     UpdateUI(environmentObjects[idx]);
                 else

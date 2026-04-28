@@ -17,7 +17,7 @@ namespace Code.Scripts.Audio
 
         void Update()
         {
-            var currentValue = Mathf.Clamp(Mathf.Abs(rotationChecker.RotationQuotient), 0f, 0.9f);
+            var currentValue = Mathf.Clamp(Mathf.Abs(rotationChecker.RotationQuotient), 0f, 0.9f)*0.5f;
             switch (_isPlaying)
             {
                 case true:
