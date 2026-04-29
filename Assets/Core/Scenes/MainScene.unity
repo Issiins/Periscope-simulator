@@ -1592,7 +1592,7 @@ MonoBehaviour:
   threshHold: 0.98
   requiredTime: 3
   successBell: {fileID: 8300000, guid: a3f91fb8bfc7a274a9d773e6be848a04, type: 3}
-  bellVolume: 0.5
+  bellVolume: 0.35
   objectImage: {fileID: 561616113}
   objectText: {fileID: 1713183560}
   idx: 0

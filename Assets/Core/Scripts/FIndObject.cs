@@ -17,7 +17,7 @@ namespace Core.Scripts
         [Tooltip("The camera used to calculate the view direction.")]
         [SerializeField] private Camera periscopeCamera;
         [SerializeField] private EnvironmentObject[] environmentObjects;
-        [Tooltip("How precisely the player must look at the object (1.0 is perfect).")]
+        [Tooltip("How precisely the player must look at the object")]
         [SerializeField] private float threshHold = 0.98f;
         [SerializeField] private float requiredTime = 3.0f;
         [Header("Audio")]
