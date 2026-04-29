@@ -3,31 +3,36 @@ using Core.Scripts.Data;
 using TMPro;
 using Unity.Collections;
 using UnityEngine;
-using UnityEditor;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace Core.Scripts
 {
+    /// <summary>
+    /// Manages the identification of environment objects.
+    /// Uses Dot Product to check if the periscope is aligned with a target.
+    /// </summary>
     public class FIndObject : MonoBehaviour
     {
         [Header("Settings")]
+        [Tooltip("The camera used to calculate the view direction.")]
         [SerializeField] private Camera periscopeCamera;
         [SerializeField] private EnvironmentObject[] environmentObjects;
+        [Tooltip("How precisely the player must look at the object (1.0 is perfect).")]
         [SerializeField] private float threshHold = 0.98f;
         [SerializeField] private float requiredTime = 3.0f;
+        [Header("Audio")]
         [SerializeField] private AudioClip successBell;
         [Range(0f, 1f)] [SerializeField] private float bellVolume = 0.5f;
         
-        [Header("UI")]
+        [Header("UI References")]
         [SerializeField] private Image objectImage;
         [SerializeField] private TMP_Text objectText;
         
-        [FormerlySerializedAs("_idx")]
         [Header("Live Stats")]
         [SerializeField, ReadOnly] private int idx = 0;
         [SerializeField, ReadOnly] private float lookTimer = 0f;
         [SerializeField, ReadOnly] private float currentDot;
+
         private void Start()
         {
             if (environmentObjects.Length > 0) 
@@ -35,6 +40,7 @@ namespace Core.Scripts
                 UpdateUI(environmentObjects[idx]);
             }
         }
+
         private void Update()
         {
             if (environmentObjects.Length == 0 || idx >= environmentObjects.Length) return;
@@ -44,32 +50,37 @@ namespace Core.Scripts
             if (currentDot > threshHold)
             {
                 lookTimer += Time.deltaTime;
-
                 if (lookTimer < requiredTime) return;
-                idx++;         
-                lookTimer = 0f;
-                if (successBell != null)
-                {
-                    AudioSource.PlayClipAtPoint(successBell, transform.position, bellVolume);
-                }
-                if (idx < environmentObjects.Length)
-                    UpdateUI(environmentObjects[idx]);
-                else
-                    objectText.text = "All Targets Found!";
+                HandleTargetAcquired();
             }
             else
-            {
-                if (lookTimer >= 0) return;
                 lookTimer = 0f;
-            }
         }
+
+        /// <summary>
+        /// Logic triggered when a target is successfully 'locked on'.
+        /// </summary>
+        private void HandleTargetAcquired()
+        {
+            idx++;         
+            lookTimer = 0f;
+            if (successBell != null)
+                AudioSource.PlayClipAtPoint(successBell, transform.position, bellVolume);
+            if (idx < environmentObjects.Length)
+                UpdateUI(environmentObjects[idx]);
+            else
+                objectText.text = "All Targets Found!";
+        }
+
+        /// <summary>
+        /// Updates the HUD elements with the current target's information.
+        /// </summary>
         private void UpdateUI(EnvironmentObject target)
         {
             objectImage.sprite = target.objectImage;
             StringBuilder sb =  new StringBuilder();
             sb.Append($"Find: {target.name}!");
             objectText.text = sb.ToString();
-            sb.Clear();
         }
     }
 }

@@ -56,10 +56,7 @@ namespace Core.Scripts.Control_Table.Control
             {
                 currentQuotient = 0f; 
             }
-            var range = Mathf.Abs(_joint.limits.min - _joint.limits.max);
-            currentQuotient = 2f * ((currentQuotient - _joint.limits.min) / range);
-            currentQuotient -= 1f;
-            _rotationQuotient = Mathf.Clamp(currentQuotient, -1f, 1f);
+            NormalizeValues(currentQuotient);
         }
         /// <summary>
         /// Follow hand rotation from the object
@@ -94,6 +91,13 @@ namespace Core.Scripts.Control_Table.Control
             if (interactor is null || interactor != _hand) return;
             _hand = null;
             _initialized = false;
+        }
+        private void NormalizeValues(float currQuotient)
+        {
+            var range = Mathf.Abs(_joint.limits.min - _joint.limits.max);
+            currQuotient = 2f * ((currQuotient - _joint.limits.min) / range);
+            currQuotient -= 1f;
+            _rotationQuotient = Mathf.Clamp(currQuotient, -1f, 1f);
         }
         private bool IsValidQuaternion(Quaternion q)
         {
