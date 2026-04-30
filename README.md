@@ -31,7 +31,7 @@ A high-fidelity virtual reality submarine experience built with Unity 6. Take co
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/periscope-simulator-vr.git
+   git clone https://github.com/Issiins/Periscope-simulator.git
    ```
 
 2. Open in Unity Hub
